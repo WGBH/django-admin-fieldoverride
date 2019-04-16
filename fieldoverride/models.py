@@ -18,6 +18,7 @@ class FieldOverride(models.Model):
     
     """
     # I need to know what my model is...?
+    # So this will have to be some sort of generic foreign key...
     
     # This is one of the 'field' values in override_fields
     field_name = models.CharField (
