@@ -1,4 +1,7 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 
 def create_field_override_choices(override_map):
     """
@@ -32,6 +35,9 @@ class FieldOverride(models.Model):
     """
     # I need to know what my model is...?
     # So this will have to be some sort of generic foreign key...
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey()
     
     # This is one of the 'field' values in override_fields
     field_name = models.CharField (
