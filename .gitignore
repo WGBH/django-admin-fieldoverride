@@ -1,0 +1,65 @@
+# WTF #
+src
+
+# POSTGRES #
+docker
+
+# LOCAL #
+.envrc
+
+# Compiled source #
+###################
+*.pyc
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+*.db
+
+# OS generated files #
+######################
+.DS_Store
+
+# django caches #
+#################
+WorldChannel2/django_cache/
+WorldChannel2/django_cache/*
+
+# media #
+#########
+media/
+media/*
+
+# backup #
+##########
+__BACKUP__/
+__BACKUP__/*
+
+# media #
+#########
+static/
+static/*
+
+# front end tooling #
+**/node_modules/**
+**/.sass-cache/**
+*.css.map
+
+# whoosh
+whoosh_index/
+
+# Postgres (via Docker)
+postgres-data/
