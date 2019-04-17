@@ -1,6 +1,19 @@
 from django.db import models
 
-
+def create_field_override_choices(override_map):
+    """
+    This is a utility function that takes the output from the map_override_fields method,
+    and converts it to a tuple suitable for a "choices" option to a field.
+    
+    The map is a list of dicts.
+    We want to return a list of tuples (value_to_store, value_to_show)
+    """
+    choices = []
+    for item in override_map:
+        choices.append(item['field'], "{} ({})".format(item['field'],item['field_type']))
+    return choices
+    
+    
 class FieldOverride(models.Model):
     """
     What do we need here?
@@ -31,7 +44,6 @@ class FieldOverride(models.Model):
         null = True, blank = True
     )
     
-    
     def map_override_fields(self):
         """
         This is where you create the structure of:
@@ -51,6 +63,5 @@ class FieldOverride(models.Model):
         I'm assuming the x__y syntax will work because e.g., in the Admin you can use that for all of the
         admin's parameters, and in the model _meta for things like setting default ordering.
         """
-        override_fields = {}
-        return None
+        return None # This is the default;  the user is supposed to override this method.
         

@@ -13,4 +13,5 @@ class FieldOverrideMixin(SingleObjectMixin):
         context = super(FieldOverrideMixin, self).get_context_data(**kwargs)
         
         # This is where the magic will happen.
+        
         return context
