@@ -1,5 +1,7 @@
 # WTF #
 src
+__pycache__
+__pycache__/*
 
 # POSTGRES #
 docker
