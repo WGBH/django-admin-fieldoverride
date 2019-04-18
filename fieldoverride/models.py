@@ -42,7 +42,14 @@ class FieldOverride(models.Model):
     field_name = models.CharField (
         _('Field Name'),
         max_length = 100,
+        ###
+        ###
+        #### AND HERE IS THE MISSING LINK
+        ###     I WANT to use something like this:
         #choices = create_field_override_choices(override_map=None)
+        ### but how do I send the override_map from the model on the other end of the content_type field?
+        ###
+        ###
     )
     override_value = models.TextField (
         _('Override Value'),
