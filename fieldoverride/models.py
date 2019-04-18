@@ -1,9 +1,9 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 
-def create_field_override_choices(override_map):
+def create_field_override_choices(override_map=None):
     """
     This is a utility function that takes the output from the map_override_fields method,
     and converts it to a tuple suitable for a "choices" option to a field.
@@ -42,7 +42,7 @@ class FieldOverride(models.Model):
     field_name = models.CharField (
         _('Field Name'),
         max_length = 100,
-        # choices = somehow get the list of map_override_fields field values
+        #choices = create_field_override_choices(override_map=None)
     )
     override_value = models.TextField (
         _('Override Value'),
@@ -51,7 +51,7 @@ class FieldOverride(models.Model):
     
 class FieldOverrideAbstractModel(models.Model):
     
-    #override_fields = GenericForeignKey('FieldOverride')
+    override_fields = GenericRelation(FieldOverride)
     
     @classmethod 
     def map_override_fields(self):
