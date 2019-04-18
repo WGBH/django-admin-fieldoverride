@@ -16,7 +16,6 @@ def create_field_override_choices(override_map):
         choices.append(item['field'], "{} ({})".format(item['field'],item['field_type']))
     return choices
     
-    
 class FieldOverride(models.Model):
     """
     What do we need here?
@@ -50,10 +49,14 @@ class FieldOverride(models.Model):
         null = True, blank = True
     )
     
+class FieldOverrideAbstractModel(models.Model):
+    
+    #override_fields = GenericForeignKey('FieldOverride')
+    
+    @classmethod 
     def map_override_fields(self):
         """
-        This is where you create the structure of:
-            1. Fields that can be overridden.
+        This is where you create the structure of fields that can be overridden.
             
         FOR NOW assume that the set of fields come from the 1:1 relationships to the FieldOverride model.
         
@@ -70,4 +73,11 @@ class FieldOverride(models.Model):
         admin's parameters, and in the model _meta for things like setting default ordering.
         """
         return None # This is the default;  the user is supposed to override this method.
-        
+    
+    class Meta:
+        abstract = True
+    
+"""
+    def map_override_fields(self):
+
+"""        
