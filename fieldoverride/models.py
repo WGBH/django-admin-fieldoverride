@@ -11,10 +11,29 @@ def create_field_override_choices(override_map=None):
     The map is a list of dicts.
     We want to return a list of tuples (value_to_store, value_to_show)
     """
-    choices = []
-    for item in override_map:
-        choices.append(item['field'], "{} ({})".format(item['field'],item['field_type']))
-    return choices
+    if override_map:
+        choices = []
+        for item in override_map:
+                choices.append(item['field'], "{} ({})".format(item['field'],item['field_type']))
+        return choices
+    return None
+    
+def list_field_override_choices(override_map=None,  html=True):
+    """
+    This returns either a list of allowable choices, or an HTML-formatted unordered list (default).
+    """
+    if override_map:
+        if html:
+            choices = '<b>These are the allowable field override choices for field name:<ul>'
+        else:
+            choices = []
+        for item in override_map:
+            if html:
+                choices += '<li>{}</li>'.format(item['field'])
+            else:
+                choices.append(item['field'])
+        return choices
+    return None
     
 class FieldOverride(models.Model):
     """
@@ -42,6 +61,7 @@ class FieldOverride(models.Model):
     field_name = models.CharField (
         _('Field Name'),
         max_length = 100,
+        #choices = get_appropriate_choices_for_field_name
         ###
         ###
         #### AND HERE IS THE MISSING LINK
@@ -55,6 +75,12 @@ class FieldOverride(models.Model):
         _('Override Value'),
         null = True, blank = True
     )
+    
+    
+    #content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    #module = importlib.import_module(content_type.app_label)
+    #model = getattr(module, content_type.model)
+    #fields = model._meta.get_fields()
     
 class FieldOverrideAbstractModel(models.Model):
     
