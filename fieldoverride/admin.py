@@ -25,12 +25,12 @@ class FieldOverrideStackedInline(GenericStackedInline):
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
         field = super(ModelImageInline, self).formfield_for_foreignkey(db_field, request, **kwargs)
-        print (" FFFF: ", self.parent_model.__name__)
-        django_log.info("TEST: {}".format(self.parent_model.__name__))
+        #print (" FFFF: ", self.parent_model.__name__)
+        #django_log.info("TEST: {}".format(self.parent_model.__name__))
         if db_field == 'field_name':
              my_class_name = self.parent_model.__name__ 
-             print ("FFF2: class name = ", my_class_name)
-             django_log.info("FFF2: class name = {}".format(my_class_name))
+             #print ("FFF2: class name = ", my_class_name)
+             #django_log.info("FFF2: class name = {}".format(my_class_name))
         return None
     #django_log.info('TEST: {}'.format(model.content_type.model_class().map_override_fields()))
     # How do I get to?
